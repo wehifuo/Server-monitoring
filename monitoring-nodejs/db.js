@@ -9,7 +9,6 @@ const pool = new Pool({
   database: process.env.DB_NAME,
 });
 
-// Не даём упасть процессу из-за ошибки простаивающего соединения
 pool.on('error', (err) => {
   console.error('Ошибка простаивающего клиента PostgreSQL:', err.message);
 });
