@@ -9,6 +9,11 @@ const pool = new Pool({
   database: process.env.DB_NAME,
 });
 
+// Не даём упасть процессу из-за ошибки простаивающего соединения
+pool.on('error', (err) => {
+  console.error('Ошибка простаивающего клиента PostgreSQL:', err.message);
+});
+
 const initDb = async () => {
   const queryText = `
     create table if not exists server_logs (
@@ -23,7 +28,7 @@ const initDb = async () => {
   `;
   try {
     await pool.query(queryText);
-    console.log(' Таблица server_metrics готова в PostgreSQL');
+    console.log('Таблица server_logs готова в PostgreSQL');
   } catch (err) {
     console.error('Ошибка создания таблицы в БД:', err.message);
   }

@@ -1,10 +1,15 @@
 {
   "name": "monitoring-nodejs",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "API и дашборд системы мониторинга доступности сервисов",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=18"
   },
   "keywords": [],
   "type": "commonjs",
